@@ -1,6 +1,7 @@
 # Uchiha_CTF__Ttyhackme-writeup
 
 
+
 ## Make more order
 
 Create a folder for this Challenge where all investigation files will be stored using `mkdir`, and then get into with `cd`
@@ -11,17 +12,18 @@ cd uchiha_folder
 ```
 ## Scanning the box 
 
+
 Use `nmap` in order to scan the box :
  
 ```bash
-nmap  -sC -sV @.@.@.@ -oN nmap_scan.log
+nmap  -sC -sV 10.10.02.98 -oN nmap_scan.log
 
 ```
 Seems like the box is up but blocking our ping probes,
 so we have to use `-Pn`
 
 ```bash
-nmap  -sC -sV -Pn @.@.@.@ -oN nmap_scan.log
+nmap  -sC -sV -Pn 10.10.02.98 -oN nmap_scan.log
 ```
 
 ```
@@ -56,8 +58,8 @@ So ports `20 and 21` are for FTP, port `22` is for SSH. From `nmap`'s result we 
 Connect to the FTP service using this command-line client.
 
 ```
-ftp @.@.@.@
-Connected to @.@.@.@.
+ftp 10.10.02.98
+Connected to 10.10.02.98.
 220 (vsFTPd 3.0.3)
 Name (@.@.@.@:hisoka): anonymous
 331 Please specify the password.
@@ -84,57 +86,95 @@ We are in, so use `ls` to view the files.
 ftp> ls
 200 PORT command successful. Consider using PASV.
 150 Here comes the directory listing.
--rw-r--r--    1 ftp      ftp            69 Nov 05 13:03 test.txt
+-rw-r--r--    1 ftp      ftp          7372 Nov 05 19:19 message.txt
 226 Directory send OK.
-ftp>
+
 ```
 
-Interesting!! we found file named `test.txt`. It can be usefull, need to see it's content.
+Interesting!! we found file named `message.txt`. It can be usefull, need to see it's content.
 Get it with command `get`.
 
 ```
-ftp> get test.txt
-local: test.txt remote: test.txt
+ftp> get message.txt
+local: message.txt remote: message.txt
 200 PORT command successful. Consider using PASV.
-150 Opening BINARY mode data connection for test.txt (69 bytes).
+150 Opening BINARY mode data connection for message.txt (7372 bytes).
 226 Transfer complete.
-69 bytes received in 0.00 secs (1.6873 MB/s)
+7372 bytes received in 0.00 secs (38.0026 MB/s)
 ftp> 
 ```  
 
-When returning to our folder `uchiha_folder`, we find the `test.txt` file. 
+When returning to our folder `uchiha_folder`, we find the `message.txt` file. 
 Using `cat` or `strings`  commands, we figure out that the file is a message from the admin.
 This make as more curiouse to search for hidden things.
 
 
-Using `ls -la`  we can see all hidden files in the FTP's folder.
+Now we have to acctivate `sharingan level 1` to see some hidden files.
+
+Using `ls -a`  we can see all hidden files in the FTP's folder.
 
 ```
-ftp> ls -la
+ftp> ls -a
 200 PORT command successful. Consider using PASV.
 150 Here comes the directory listing.
-drwxr-xr-x    2 ftp      ftp          4096 Nov 03 17:59 .
-drwxr-xr-x    2 ftp      ftp          4096 Nov 03 17:59 ..
--rw-r--r--    1 ftp      ftp        219944 Nov 05 13:03 .pentesting_wireShark_file.file
--rw-r--r--    1 ftp      ftp            69 Nov 05 13:03 test.txt
+drwxr-xr-x    2 ftp      ftp          4096 Nov 05 19:30 .
+drwxr-xr-x    2 ftp      ftp          4096 Nov 05 19:30 ..
+-rw-r--r--    1 ftp      ftp         42490 Nov 05 19:29 .sniffing_test.file
+-rw-r--r--    1 ftp      ftp          7372 Nov 05 19:29 message.txt
 226 Directory send OK.
 ftp> 
+
 ```
 
-Yeah!! we found a file named `.pentesting_wireShark_file.file`. Looks like a hidden file created while testing the box by the admin's friend.
+Yeah!! we found a file named `.sniffing_test.file`. Looks like a hidden file created while testing the box.
 
-As wee see it's a `wireshark` capture_file who must be a `.pcap` . Change the file's extention to `.pcap`. 
+If we search about `sniffing tools` we find `wireshark`.   
 
 Then here we go to `wireshark` to see the content.
 
 ```bash
-wireshark .pentesting_wireShark_file.pcap
+wireshark .sniffing_test.file
+```
+
+We can deduce that was a pinging flood `ICMP` protocol, and other protocols.
+
+ ![img/pcap_file_content.png](img/pcap_file_content.png)
+
+
+
+When sorting the list by `protocol`, an `FTP-DATA` port`20` discussion between the server and the client. 
+
+ ![img/ftp_data_protocol.png](img/ftp_data_protocol.png)
+
+
+By Following the `TCP Stream` of the `FTP-DATA` protocol, we get something that looks like a `auth.log` file.
+
+ ![img/auth_log.png](img/auth_log.png)
+
+
+This is so interesting, now it's time to acctivate `sharingan level 2` and find usefull informations,
+Yeah !!! found credentials `user:password`
+
+```
+itachi:W3_C@NT_S33_WH1L3_CL0S1NG_3Y3S
 
 ```
 
-While scrolling the content, and by sorting by `protocol` as the next picture shows:
 
- ![img/pcap_file_content.png](img/pcap_file_content.png)
+
+## Logging in with SSH credentials
+
+As we saw SSH open port on this box, and `/home/itachi/.ssh` folder was created. So lets go try these credentials!!!
+
+```bash
+ssh itachi@10.10.02.98
+
+```
+
+
+
+
+
 
 
 
