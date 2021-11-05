@@ -1,5 +1,4 @@
-# Rmse uchiha Ctf - Ttyhackme writeup
-
+# Uchiha_CTF__Ttyhackme-writeup
 
 
 ## Make more order
