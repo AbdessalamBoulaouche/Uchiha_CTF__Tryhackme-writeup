@@ -1,4 +1,4 @@
-# Rmse uchiha Ctf - Ttyhackme writeup
+# Rmse uchiha Ctf - Tryhackme writeup
 
 
 
