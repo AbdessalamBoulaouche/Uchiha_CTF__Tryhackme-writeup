@@ -1,4 +1,4 @@
-# Uchiha_CTF__Ttyhackme-writeup
+# Rmse uchiha Ctf - Ttyhackme writeup
 
 
 
@@ -88,7 +88,6 @@ ftp> ls
 150 Here comes the directory listing.
 -rw-r--r--    1 ftp      ftp          7372 Nov 05 19:19 message.txt
 226 Directory send OK.
-
 ```
 
 Interesting!! we found file named `message.txt`. It can be usefull, need to see it's content.
@@ -123,7 +122,6 @@ drwxr-xr-x    2 ftp      ftp          4096 Nov 05 19:30 ..
 -rw-r--r--    1 ftp      ftp          7372 Nov 05 19:29 message.txt
 226 Directory send OK.
 ftp> 
-
 ```
 
 Yeah!! we found a file named `.sniffing_test.file`. Looks like a hidden file created while testing the box.
@@ -157,7 +155,6 @@ Yeah !!! found credentials `user:password`
 
 ```
 itachi:W3_C@NT_S33_WH1L3_CL0S1NG_3Y3S
-
 ```
 
 
@@ -168,8 +165,8 @@ As we saw SSH open port on this box, and `/home/itachi/.ssh` folder was created.
 
 ```bash
 ssh itachi@10.10.02.98
-
 ```
+
 
 
 
