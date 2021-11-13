@@ -236,7 +236,7 @@ This is so interesting, now it's time to acctivate `sharingan level 2` and find 
 Yeah !!! found credentials `user:password`
 
 ```
-itachi:W3_C@NT_S33_WH1L3_CL0S1NG_3Y3S
+itachi:<password>
 ```
 
 
@@ -281,7 +281,7 @@ cat flag1.txt
 flag1
 
 ```
-THM{UMMTO_RMSE_[bc7c862dffa805274cb71251b3819145]}
+THM{UMMTO_RMSE_[*************************]}
 ```
 
 
@@ -491,7 +491,7 @@ cat /home/obito/flag2.txt
 ```
 
 ```
-THM{UMMTO_RMSE_[a34b741169c7a49888424016fe0d6edb]}
+THM{UMMTO_RMSE_[*************************]}
 ```
 ### Read the message.txt
 
@@ -669,7 +669,7 @@ cat *
 flag3.txt 
 
 ```
-THM{UMMTO_RMSE_[25ab649515954455d604cedc5556b738]}
+THM{UMMTO_RMSE_[*************************]}
 ```
 
 
