@@ -678,7 +678,7 @@ THM{UMMTO_RMSE_[*************************]}
 
 ## END
 
-After all i want to thank `Pr.DAOUI` for all the support.
+After all i want to thank `Pr.Mehammed DAOUI`  https://scholar.google.fr/citations?user=nTTcT5cAAAAJ&hl=fr for all the support.
 Also `John Hammond`  twitter:`@_JohnHammond` for  all the content he publish on youtube where i enjoy watching. And every one who encouraged me during the creation of my first CTF. 
 
 
@@ -690,7 +690,7 @@ So just after getting the ability to make it public `Publicly Accessible`, i'll 
 
 
 
-For more info, advises and suggestions, email me at `abdousoft14@gmail.com`.
+For more info, advises and suggestions, email me at abdousoft14@gmail.com.
 
 THANK You ;)
 
