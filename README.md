@@ -3,7 +3,7 @@
 
 First of all 
 
-## Make more order
+## Some organisation
 
 Create a folder where we will put all the content later
 
