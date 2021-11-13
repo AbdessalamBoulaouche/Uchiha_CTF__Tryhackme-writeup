@@ -1,4 +1,11 @@
-# uchiha Ctf - Tyrhackme writeup
+# Rmse uchiha Ctf - Tyrhackme writeup
+
+
+
+
+
+
+
 
 
 First of all 
